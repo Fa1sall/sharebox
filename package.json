@@ -1,0 +1,38 @@
+{
+  "name": "sharebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prisma:init": "npx prisma init",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate:init": "npx prisma migrate dev --name init",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio",
+    "tailwindcss:watch": "npx @tailwindcss/cli -i ./public/styles/styles.css -o ./public/styles/output.css --watch"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@quixo3/prisma-session-store": "^3.1.13",
+    "@tailwindcss/cli": "^4.1.14",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.17.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "prisma": "^6.17.1"
+  }
+}
