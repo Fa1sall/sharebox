@@ -24,7 +24,32 @@ model User{
   id Int @id @default(autoincrement())
   email String @unique
   password String
+  folders Folder[]
   createdAt DateTime @default(now()) 
 
   @@map("users")
+}
+
+model Folder{
+  id Int @id @default(autoincrement())
+  name String
+  userId Int
+  files File[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  @@map("folders")
+}
+
+model File{
+  id Int @id @default(autoincrement())
+  name String
+  link String
+  folderId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  folder Folder @relation(fields: [folderId], references: [id])
+  @@map("files")
 }

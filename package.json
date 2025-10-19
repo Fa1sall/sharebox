@@ -9,6 +9,7 @@
     "prisma:generate": "npx prisma generate",
     "prisma:migrate:init": "npx prisma migrate dev --name init",
     "prisma:migrate": "npx prisma migrate dev",
+    "prisma:migrate:reset": "npx prisma migrate reset",
     "prisma:studio": "npx prisma studio",
     "tailwindcss:watch": "npx @tailwindcss/cli -i ./public/styles/styles.css -o ./public/styles/output.css --watch"
   },
