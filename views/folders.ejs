@@ -3,12 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ShareBox | Folders</title>
   </head>
   <body>
-    <form action="/folders/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <button type="submit">Upload</button>
+    <form action="/folders/create" method="post">
+      <input type="text" name="name" required/>
+      <button type="submit">Create Folder</button>
     </form>
+    <%if(!folders || folders.length == 0){%>
+      <h1>No Folders Yet</h1>
+      <p>Start by creating a folder using <b>Create Folder</b> button</p>
+    <%} else {%>
+      <%folders.forEach((folder) => {%>
+        <div style="border: 2px solid black; padding: 2px; margin: 10px 0px; display: flex; justify-content: space-between;">
+          <a href="/folders/<%=folder.id%>"><%=folder.name%></a>
+          <form action="/folders/<%=folder.id%>/update" method="post">
+            <input type="text" name="name" value="<%= folder?.name || '' %>"/>
+            <button type="submit">Rename Folder</button>
+          </form>
+          <form action="/folders/<%=folder.id%>/delete" method="post">
+            <button type="submit" style="color:white; background-color: red;">Delete Folder</button>
+          </form>
+        </div>
+      <% }) %>
+    <%}%>
   </body>
 </html>

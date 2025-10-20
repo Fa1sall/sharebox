@@ -16,9 +16,9 @@ export const handleSignUp = async (req, res) => {
       formData: { email },
     });
   }
-  const hashedPassword = genPassword(password);
+  const hashedPassword = await genPassword(password);
   await createUser(email, hashedPassword);
-  res.redirect("/");
+  res.redirect("/login");
 };
 
 export const renderLoginPage = (req, res) => {
@@ -50,7 +50,7 @@ export const handleLogin = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/");
+      res.redirect("/folders");
     });
   })(req, res, next);
 };
