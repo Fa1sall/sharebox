@@ -37,19 +37,24 @@ model Folder{
   files File[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [userId], references: [id])
   @@map("folders")
+  @@index([userId])
 }
 
 model File{
   id Int @id @default(autoincrement())
   name String
   link String
+  size Int
+  type String
   folderId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  folder Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
 
-  folder Folder @relation(fields: [folderId], references: [id])
   @@map("files")
+  @@index([folderId])
+  @@unique([folderId, name, type, size])
 }
