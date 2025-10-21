@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@quixo3/prisma-session-store": "^3.1.13",
+    "@supabase/supabase-js": "^2.76.0",
     "@tailwindcss/cli": "^4.1.14",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
@@ -29,7 +30,8 @@
     "multer": "^2.0.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.14",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@prisma/client": "^6.17.1",
