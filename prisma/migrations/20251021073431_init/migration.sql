@@ -36,6 +36,7 @@ CREATE TABLE "files" (
     "link" TEXT NOT NULL,
     "size" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
+    "path" TEXT NOT NULL,
     "folderId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
