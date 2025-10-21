@@ -13,8 +13,21 @@
       method="post"
       enctype="multipart/form-data"
     >
-      <input type="file" name="file" />
+      <input type="file" name="files" multiple required />
       <button type="submit">Upload</button>
     </form>
+    <%if(!files || files.length == 0){%>
+      <h1>No Files Yet</h1>
+      <p>Start by creating a files using <b>Upload Files</b> button</p>
+    <%} else {%>
+      <%files.forEach((file) => {%>
+        <div style="border: 2px solid black; padding: 2px; margin: 10px 0px; display: flex; justify-content: space-between;">
+          <a href="/folders/<%=folder.id%>"><%=file.name%></a>
+          <form action="/files/<%=file.id%>/delete" method="post">
+            <button type="submit" style="color:white; background-color: red;">Delete File</button>
+          </form>
+        </div>
+      <% }) %>
+    <%}%>
   </body>
 </html>

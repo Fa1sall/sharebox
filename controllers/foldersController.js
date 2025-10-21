@@ -1,6 +1,4 @@
-import multer from "multer";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { getFolderFiles } from "../models/files.js";
 import {
   createFolder,
   updateFolder,
@@ -8,20 +6,6 @@ import {
   getFolder,
   getUserFolders,
 } from "../models/folders.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, join(__dirname, "../uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage });
 
 export const renderFolders = async (req, res) => {
   const folders = await getUserFolders(req.user.id);
@@ -31,7 +15,8 @@ export const renderFolders = async (req, res) => {
 export const renderFolder = async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const folder = await getFolder(id);
-  res.render("folder", { folder });
+  const files = await getFolderFiles(id);
+  res.render("folder", { folder, files });
 };
 
 export const handleCreateFolder = async (req, res) => {
@@ -53,10 +38,3 @@ export const handleDeleteFolder = async (req, res) => {
   await deleteFolder(id);
   res.redirect("/folders");
 };
-
-export const handleUploadFile = [
-  upload.single("file"),
-  (req, res) => {
-    res.send("File uploaded successfully!");
-  },
-];

@@ -7,6 +7,7 @@ import {
 } from "../controllers/authController.js";
 import { validateLogin, validateUser } from "../middlewares/validation.js";
 import foldersRouter from "./folders.js";
+import fileRouter from "./files.js";
 
 const router = Router();
 
@@ -27,5 +28,9 @@ router.post("/login", validateLogin, handleLogin);
 // ---------------- Folders ----------------
 
 router.use("/folders", foldersRouter);
+
+// ---------------- Files ----------------
+
+router.use("/files", fileRouter);
 
 export default router;

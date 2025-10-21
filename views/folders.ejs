@@ -18,7 +18,7 @@
         <div style="border: 2px solid black; padding: 2px; margin: 10px 0px; display: flex; justify-content: space-between;">
           <a href="/folders/<%=folder.id%>"><%=folder.name%></a>
           <form action="/folders/<%=folder.id%>/update" method="post">
-            <input type="text" name="name" value="<%= folder?.name || '' %>"/>
+            <input type="text" name="name" value="<%= folder?.name || '' %>" required/>
             <button type="submit">Rename Folder</button>
           </form>
           <form action="/folders/<%=folder.id%>/delete" method="post">
