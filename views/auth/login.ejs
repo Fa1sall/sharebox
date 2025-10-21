@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShareBox | Login</title>
     <link rel="stylesheet" href="/styles/output.css" />
+    <link rel="icon" type="image/png" href="/images/logo2.png">
   </head>
-  <body class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-    <div class="bg-white py-8 px-6 rounded shadow-md w-full max-w-md">
-      <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+  <body class="min-h-screen bg-bg1 flex flex-col">
+    <%- include('../partials/navbar') %>
+    <main class="flex items-center justify-center flex-1 border border-t-gray-600">
+      <div class="bg-bg2 text-card-headline border border-btn-primary-bg font-body py-8 px-6 rounded shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-title font-bold text-center mb-6">Login</h2>
       <form action="/login" method="post" class="flex flex-col gap-4">
         <div>
           <label for="email" class="block mb-1">Email</label>
           <input type="email" name="email" id="email" required
             value="<%= formData?.email || '' %>"
             placeholder="Enter your email"
-            class="w-full border rounded px-3 py-2 focus:outline-none focus:ring"
+            class="w-full caret-btn-primary-bg border-2 border-gray-400 rounded px-3 py-2 outline-none focus:border-btn-primary-bg transition-all duration-200 ease-in-out"
           />
           <% if(errors && errors["email"]) { %>
             <p class="text-red-500 text-sm mt-1"><%= errors["email"].msg %></p>
@@ -26,7 +29,7 @@
           <label for="password" class="block mb-1">Password</label>
           <input type="password" name="password" id="password" required
             placeholder="Enter your password"
-            class="w-full border rounded px-3 py-2 focus:outline-none focus:ring"
+            class="w-full caret-btn-primary-bg border-2 border-gray-400 rounded px-3 py-2 outline-none focus:border-btn-primary-bg transition-all duration-200 ease-in-out"
           />
           <% if(errors && errors["password"]) { %>
             <p class="text-red-500 text-sm mt-1"><%= errors["password"].msg %></p>
@@ -37,14 +40,15 @@
           <p class="text-red-500 text-sm mt-2 text-center"><%= errors["login_error"] %></p>
         <% } %>
 
-        <button type="submit" class="mt-4 w-full bg-blue-600 text-white rounded py-2 hover:bg-blue-700 transition">
+        <button type="submit" class="mt-4 w-full bg-btn-primary-bg hover:bg-btn-primary-hover text-white font-semibold rounded py-2 transition cursor-pointer">
           Login
         </button>
       </form>
 
       <p class="mt-4 text-center text-sm">
-        Don't have an account? <a href="/signup" class="text-blue-600 hover:underline">Sign Up</a>
+        Don't have an account? <a href="/signup" class="text-btn-primary-bg font-semibold hover:underline">Sign Up</a>
       </p>
     </div>
+    </main>
   </body>
 </html>

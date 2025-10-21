@@ -1,1 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-title: "Nunito Sans", Arial, sans-serif;
+  --font-body: "Source Sans 3", Arial, sans-serif;
+
+  /* Backgrounds */
+  --color-bg1: #16161a; /* Main background */
+  --color-bg2: #242629; /* Secondary sections, cards, or modals */
+  --color-card: #242629; /* Cards, file blocks */
+
+  /* Text */
+  --color-headline: #fffffe; /* Main heading text */
+  --color-subheadline: #94a1b2; /* Secondary heading text */
+  --color-paragraph: #94a1b2; /* Normal text */
+  --color-card-headline: #fffffe;
+  --color-card-paragraph: #94a1b2;
+
+  /* Buttons */
+  --color-btn-primary-bg: #7f5af0;
+  --color-btn-primary-text: #fffffe;
+  --color-btn-primary-hover: #6a45d1;
+
+  --color-btn-danger-bg: #f25f4c;
+  --color-btn-danger-text: #fffffe;
+  --color-btn-danger-hover: #d94a3b;
+
+  --color-btn-success-bg: #2cb67d;
+  --color-btn-success-text: #fffffe;
+  --color-btn-success-hover: #26a06f;
+
+  /* Tags / Highlights */
+  --color-tag-bg: #7f5af0;
+  --color-tag-text: #fffffe;
+  --color-highlight: #7f5af0;
+
+  /* Icons / Illustrations */
+  --color-icon-stroke: #010101;
+  --color-icon-main: #fffffe;
+  --color-icon-secondary: #72757e;
+  --color-icon-tertiary: #2cb67d;
+
+  /* Borders / Dividers */
+  --color-border: #2e2f3e;
+}
