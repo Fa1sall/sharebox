@@ -16,7 +16,7 @@ export const renderFolder = async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const folder = await getFolder(id);
   const files = await getFolderFiles(id);
-  res.render("folder", { folder, files });
+  res.render("folder", { folder, files, successful: [], failed: [] });
 };
 
 export const handleCreateFolder = async (req, res) => {

@@ -1,6 +1,6 @@
 import prisma from "../config/prismaClient.js";
 
-export async function createFile(folderId, name, size, type, link) {
+export async function createFile(folderId, name, size, type, link, path) {
   try {
     const file = await prisma.file.create({
       data: {
@@ -9,6 +9,7 @@ export async function createFile(folderId, name, size, type, link) {
         size,
         type,
         link,
+        path,
       },
     });
     return file;
