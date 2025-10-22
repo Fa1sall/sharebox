@@ -58,6 +58,11 @@ app.use((req, res, next) => {
 
 // ---------------- Routes ----------------
 
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.isAuthenticated();
+  next();
+});
+
 app.use("/", routes);
 
 app.use((err, req, res, next) => {

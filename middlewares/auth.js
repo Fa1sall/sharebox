@@ -1,7 +1,6 @@
 export const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    next();
-  } else {
-    res.render("auth/unauthorized");
+    return next();
   }
+  res.render("auth/unauthorized");
 };
