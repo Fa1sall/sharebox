@@ -1,5 +1,5 @@
 <aside
-  class="flex justify-between items-center p-2 sm:p-4 bg-bg1 text-headline shadow-xl"
+  class="flex justify-between items-center p-2 sm:p-4 bg-bg1 text-headline shadow-xl border-b border-gray-600"
 >
   <div class="flex items-center text-center gap-2 pb-1">
     <svg
@@ -14,26 +14,34 @@
       />
     </svg>
     <p class="text-lg sm:text-xl font-bold font-title pt-2">
-      <span class="text-ill-highlight">S</span><span>hare</span
-      ><span class="text-ill-highlight">B</span><span>ox</span>
+      <span class="text-headline">Share</span
+      ><span class="text-btn-success-bg">Box</span>
     </p>
   </div>
   <div class="flex font-body font-semibold text-md">
     <ul class="flex gap-5 justify-center items-center">
-      <li>
-        <a
+      <% if(isLoggedIn){ %>
+        <li>
+          <a
+          href="/logout"
+          class="bg-btn-danger-hover hover:bg-btn-danger-bg text-btn-primary-text px-2 py-1 rounded"
+          >Logout</a
+          >        
+        </li>
+      <% } else { %>
+        <li>
+          <a 
           href="/login"
           class="bg-btn-primary-bg hover:bg-btn-primary-hover text-btn-primary-text px-2 py-1 rounded"
-          >Login</a
-        >
-      </li>
-      <li>
-        <a
+          >Login</a>
+        </li>
+        <li>
+          <a 
           href="/signup"
           class="bg-btn-primary-bg hover:bg-btn-primary-hover text-btn-primary-text px-2 py-1 rounded"
-          >Sign Up</a
-        >
-      </li>
+          >Signup</a>
+        </li>
+      <% } %>
     </ul>
   </div>
 </aside>

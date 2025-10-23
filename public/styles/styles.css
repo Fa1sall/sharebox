@@ -2,18 +2,19 @@
 @import "tailwindcss";
 
 @theme {
+  /* Fonts */
   --font-title: "Nunito Sans", Arial, sans-serif;
   --font-body: "Source Sans 3", Arial, sans-serif;
 
   /* Backgrounds */
-  --color-bg1: #16161a; /* Main background */
-  --color-bg2: #242629; /* Secondary sections, cards, or modals */
-  --color-card: #242629; /* Cards, file blocks */
+  --color-bg1: #16161a;
+  --color-bg2: #242629;
+  --color-card: #242629;
 
   /* Text */
-  --color-headline: #fffffe; /* Main heading text */
-  --color-subheadline: #94a1b2; /* Secondary heading text */
-  --color-paragraph: #94a1b2; /* Normal text */
+  --color-headline: #fffffe;
+  --color-subheadline: #94a1b2;
+  --color-paragraph: #94a1b2;
   --color-card-headline: #fffffe;
   --color-card-paragraph: #94a1b2;
 
@@ -30,17 +31,17 @@
   --color-btn-success-text: #fffffe;
   --color-btn-success-hover: #26a06f;
 
-  /* Tags / Highlights */
+  /* Tags */
   --color-tag-bg: #7f5af0;
   --color-tag-text: #fffffe;
   --color-highlight: #7f5af0;
 
-  /* Icons / Illustrations */
+  /* Icons */
   --color-icon-stroke: #010101;
   --color-icon-main: #fffffe;
   --color-icon-secondary: #72757e;
   --color-icon-tertiary: #2cb67d;
 
-  /* Borders / Dividers */
+  /* Border */
   --color-border: #2e2f3e;
 }

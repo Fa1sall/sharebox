@@ -4,28 +4,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShareBox | Folders</title>
+    <link rel="stylesheet" href="/styles/output.css" />
+    <link rel="icon" type="image/png" href="/images/logo2.png" />
+    <script defer src="/scripts/createFolderModal.js"></script>
+    <script defer src="/scripts/folderMenuToggle.js"></script>
   </head>
-  <body>
-    <form action="/folders/create" method="post">
-      <input type="text" name="name" required/>
-      <button type="submit">Create Folder</button>
-    </form>
-    <%if(!folders || folders.length == 0){%>
-      <h1>No Folders Yet</h1>
-      <p>Start by creating a folder using <b>Create Folder</b> button</p>
-    <%} else {%>
-      <%folders.forEach((folder) => {%>
-        <div style="border: 2px solid black; padding: 2px; margin: 10px 0px; display: flex; justify-content: space-between;">
-          <a href="/folders/<%=folder.id%>"><%=folder.name%></a>
-          <form action="/folders/<%=folder.id%>/update" method="post">
-            <input type="text" name="name" value="<%= folder?.name || '' %>" required/>
-            <button type="submit">Rename Folder</button>
-          </form>
-          <form action="/folders/<%=folder.id%>/delete" method="post">
-            <button type="submit" style="color:white; background-color: red;">Delete Folder</button>
+  <body class="min-h-screen bg-bg1 flex flex-col">
+    <%- include('partials/navbar') %>
+    <main class="flex flex-col items-center flex-1 px-4 py-8">
+      <button
+        onclick="openModal('create-folder-modal')"
+        class="bg-btn-primary-bg hover:bg-btn-primary-hover text-white font-semibold rounded px-6 py-2 transition mb-6 cursor-pointer"
+      >
+        Create Folder
+      </button>
+      <% if(!folders || folders.length == 0){ %>
+        <div class="text-center text-gray-400 font-title">
+          <h1 class="text-xl sm:text-2xl font-bold">No Folders Yet</h1>
+          <p class="text-sm sm:text-lg">Start by creating a folder using <b>Create Folder</b> button</p>
+        </div>
+      <% } else { %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl w-full">
+          <% folders.forEach((folder) => { %>
+            <div class="bg-bg2 relative border border-gray-600 rounded p-4 flex flex-col items-center text-card-headline">
+              <a class="flex flex-col w-full justify-center items-center" href="/folders/<%=folder.id%>">
+                <svg 
+                class="w-24 h-24 mb-2 fill-btn-primary-bg"
+                xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="96px" height="96px"><path d="M 3.5 3 C 2.6774686 3 2 3.6774686 2 4.5 L 2 18.5 C 2 19.322531 2.6774686 20 3.5 20 L 20.5 20 C 21.322531 20 22 19.322531 22 18.5 L 22 6.5 C 22 5.6774686 21.322531 5 20.5 5 L 10.626953 5 C 10.494266 5 10.368136 4.9496639 10.273438 4.8554688 A 0.50005 0.50005 0 0 0 10.273438 4.8535156 L 8.8457031 3.4355469 L 8.8457031 3.4375 C 8.5648004 3.1565972 8.182927 3 7.7871094 3 L 3.5 3 z M 3.5 4 L 7.7871094 4 C 7.9212918 4 8.0455746 4.0514341 8.1386719 4.1445312 A 0.50005 0.50005 0 0 0 8.140625 4.1464844 L 9.5683594 5.5644531 C 9.8496605 5.844258 10.23164 6 10.626953 6 L 20.5 6 C 20.781469 6 21 6.2185314 21 6.5 L 21 18.5 C 21 18.781469 20.781469 19 20.5 19 L 3.5 19 C 3.2185314 19 3 18.781469 3 18.5 L 3 4.5 C 3 4.2185314 3.2185314 4 3.5 4 z"/></svg>
+                <p class="text-center truncate max-w-xs w-full font-semibold hover:underline"><%= folder.name %></p>
+              </a>
+              <button
+              onclick="toggleFolderMenu('folder-menu-<%=folder.id%>')"   
+              class="absolute top-2 right-2 cursor-pointer text-gray-400 hover:text-gray-200">
+                &#8942;
+              </button>
+              <div 
+              id="folder-menu-<%=folder.id%>"
+              class="hidden folder-menu top-8 right-2 absolute bg-bg1 text-card-headline border border-gray-600 rounded shadow-lg w-40 z-40">
+              <form 
+              action="/folders/<%=folder.id%>/update" method="post"
+              class="flex flex-col gap-3 p-2">
+                <input
+                required 
+                type="text" name="name" value="<%= folder?.name || '' %>"
+                class="border-2 border-gray-400 rounded px-2 py-1 focus:border-btn-primary-bg outline-none text-sm">
+                <button 
+                type="submit"
+                class="cursor-pointer bg-btn-primary-bg hover:bg-btn-primary-hover text-white font-semibold rounded px-2 py-1 text-sm transition"
+                >Rename</button>
+              </form>
+              <form action="/folders/<%=folder.id%>/delete" method="post" class="p-2">
+                <button
+                class="bg-red-600 hover:bg-red-700 text-white font-semibold rounded px-2 py-1 text-sm w-full transition" 
+                type="submit">
+                Delete
+                </button>
+              </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+      <div id="create-folder-modal" class="hidden flex items-center justify-center fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+        <div class="relative bg-bg2 text-card-headline p-8 max-w-md w-full rounded">
+          <button 
+          class="absolute top-2 right-3 text-2xl cursor-pointer text-gray-300 hover:text-gray-200"
+          onclick="closeModal('create-folder-modal')">
+            &times;</button>
+          <h2 class="text-xl text-center">Create a New Folder</h2>
+          <form 
+          class="flex flex-col gap-5"
+          action="/folders/create" method="post">
+            <input
+            placeholder="Enter your folder name"
+            class="w-full text-center caret-btn-primary-bg border-2 border-gray-400 rounded mt-3 px-3 py-2 outline-none focus:border-btn-primary-bg transition-all duration-200 ease-in-out" 
+            type="text"
+            name="name"
+            required>
+            <button
+            type="submit"
+            class="w-full bg-btn-primary-bg hover:bg-btn-primary-hover text-white font-semibold rounded py-2 transition cursor-pointer"
+            >Create Folder</button>
           </form>
         </div>
-      <% }) %>
-    <%}%>
+      </div>
+    </main>
   </body>
 </html>
