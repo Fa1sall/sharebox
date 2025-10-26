@@ -22,11 +22,9 @@
     <ul class="flex gap-5 justify-center items-center">
       <% if(isLoggedIn){ %>
         <li>
-          <a
-          href="/logout"
-          class="bg-btn-danger-hover hover:bg-btn-danger-bg text-btn-primary-text px-2 py-1 rounded"
-          >Logout</a
-          >        
+          <form action="/logout" method="post">
+            <button type="submit" class="bg-btn-danger-hover hover:bg-btn-danger-bg text-btn-primary-text px-2 py-1 rounded cursor-pointer">Logout</button>
+          </form>                  
         </li>
       <% } else { %>
         <li>

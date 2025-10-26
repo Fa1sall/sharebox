@@ -54,3 +54,12 @@ export const handleLogin = (req, res, next) => {
     });
   })(req, res, next);
 };
+
+export const handleLogout = async (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
+};

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   handleLogin,
+  handleLogout,
   handleSignUp,
   renderLoginPage,
   renderSignUpPage,
@@ -24,6 +25,8 @@ router.post("/signup", validateUser, handleSignUp);
 router.get("/login", renderLoginPage);
 
 router.post("/login", validateLogin, handleLogin);
+
+router.post("/logout", handleLogout);
 
 // ---------------- Folders ----------------
 
