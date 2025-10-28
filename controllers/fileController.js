@@ -90,6 +90,25 @@ export const handleUploadFile = async (req, res) => {
   });
 };
 
+export const handleGetSignedUrl = async (req, res) => {
+  const id = parseInt(req.params.fileId, 10);
+  const { path } = await getFile(id);
+
+  const { time } = req.query;
+  const expiresIn = parseInt(time, 10) || 300;
+
+  const { data, error } = await supabase.storage
+    .from(process.env.BUCKET_NAME)
+    .createSignedUrl(path, expiresIn);
+
+  if (error) {
+    console.log("Supabase error: ", error);
+    return res.render("error");
+  }
+
+  res.json({ signedUrl: data.signedUrl });
+};
+
 export const handleDeleteFile = async (req, res) => {
   const id = parseInt(req.params.fileId, 10);
   const { path } = await getFile(id);
