@@ -6,6 +6,7 @@ import {
   getFolder,
   getUserFolders,
 } from "../models/folders.js";
+import { bytesToMB } from "../utils/bytesConverter.js";
 
 export const renderFolders = async (req, res) => {
   const folders = await getUserFolders(req.user.id);
@@ -15,8 +16,20 @@ export const renderFolders = async (req, res) => {
 export const renderFolder = async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const folder = await getFolder(id);
-  const files = await getFolderFiles(id);
-  res.render("folder", { folder, files, successful: [], failed: [] });
+  const res_files = await getFolderFiles(id);
+
+  const processedFiles = res_files.map((file) => ({
+    ...file,
+    displaySize: bytesToMB(parseInt(file.size, 10)),
+    displayType: file.name.split(".")[1].toUpperCase(),
+  }));
+
+  res.render("folder", {
+    folder,
+    files: processedFiles,
+    successful: [],
+    failed: [],
+  });
 };
 
 export const handleCreateFolder = async (req, res) => {

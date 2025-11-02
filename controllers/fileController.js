@@ -3,6 +3,7 @@ import supabase from "../config/supabaseClient.js";
 import { createFile, deleteFile } from "../models/files.js";
 import { getFolderFiles, getFile } from "../models/files.js";
 import { getFolder } from "../models/folders.js";
+import { bytesToMB } from "../utils/bytesConverter.js";
 
 const storage = multer.memoryStorage();
 
@@ -86,7 +87,18 @@ export const handleUploadFile = async (req, res) => {
 
     const updatedFiles = await getFolderFiles(folderId);
 
-    res.render("folder", { folder, files: updatedFiles, successful, failed });
+    const processedFiles = updatedFiles.map((file) => ({
+      ...file,
+      displaySize: bytesToMB(parseInt(file.size, 10)),
+      displayType: file.name?.split(".")[1].toUpperCase() || "File",
+    }));
+
+    res.render("folder", {
+      folder,
+      files: processedFiles,
+      successful,
+      failed,
+    });
   });
 };
 
