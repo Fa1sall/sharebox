@@ -1,7 +1,11 @@
 import multer from "multer";
 import supabase from "../config/supabaseClient.js";
-import { createFile, deleteFile } from "../models/files.js";
-import { getFolderFiles, getFile } from "../models/files.js";
+import {
+  createFile,
+  deleteFile,
+  getFolderFiles,
+  getFile,
+} from "../models/files.js";
 import { getFolder } from "../models/folders.js";
 import { bytesToMB } from "../utils/bytesConverter.js";
 
@@ -100,6 +104,14 @@ export const handleUploadFile = async (req, res) => {
       failed,
     });
   });
+};
+
+export const handleGetFileInfo = async (req, res) => {
+  const id = parseInt(req.params.fileId, 10);
+
+  const fileInfo = await getFile(id);
+
+  res.json(fileInfo);
 };
 
 export const handleGetSignedUrl = async (req, res) => {
