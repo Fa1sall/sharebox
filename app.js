@@ -37,9 +37,13 @@ app.use(
     }),
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    rolling: true, // refresh expiration on activity
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 1 day cookie validity
+      httpOnly: true, // prevents client-side JavaScript from accessing the cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days cookie validity
+      secure: process.env.NODE_ENV === "production", // only sends the cookie over secure HTTPS connections
+      sameSite: "lax", // protects against CSRF
     },
   })
 );
