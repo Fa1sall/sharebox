@@ -16,6 +16,11 @@ export const renderFolders = async (req, res) => {
 export const renderFolder = async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const folder = await getFolder(id);
+
+  if (folder.userId !== req.user.id) {
+    return res.render("auth/unauthorized");
+  }
+
   const res_files = await getFolderFiles(id);
 
   const processedFiles = res_files.map((file) => ({
