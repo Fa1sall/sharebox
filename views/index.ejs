@@ -4,6 +4,149 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShareBox</title>
+    <link rel="stylesheet" href="/styles/output.css" />
+    <link rel="icon" type="image/png" href="/images/logo2.png" />
   </head>
-  <body></body>
+  <body class="min-h-screen bg-bg1 text-headline flex flex-col pt-20 scroll-smooth">
+    <%- include ('partials/navbar') %>
+
+    <main class="mx-auto max-w-7xl w-full">
+      <!-- Hero -->
+      <section
+        class="flex flex-col-reverse md:flex-row gap-5 min-h-[calc(100vh-5rem)] items-center justify-center max-w-6xl mx-auto w-full px-4 sm:px-6"
+      >
+        <div class="flex-1 max-w-2xl mx-auto text-center md:text-left">
+          <p
+            class="leading-none text-4xl sm:text-5xl md:text-6xl font-title mb-4"
+          >
+            <span
+              class="font-bold text-transparent bg-clip-text bg-icon-tertiary"
+            >
+              <span>ShareBox</span></span
+            ><span>: Effortless File Management</span>
+          </p>
+          <p class="font-body text-gray-300 text-md sm:text-lg md:text-xl mb-6">
+            Securely store, share, and manage your files - all in one place.
+          </p>
+          <div class="flex w-full justify-center md:justify-start gap-5">
+            <a
+              href="/signup"
+              class="py-2 px-3 sm:px-3 sm:py-4 inline-flex items-center gap-x-2 text-md font-bold rounded-lg bg-gradient-to-br from-purple-600 via-purple-900 to-purple-600 border border-icon-secondary hover:opacity-95"
+            >
+              Get Started
+              <svg
+                class="shrink-0 size-4"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <a
+              href="#features"
+              class="py-2 px-3 sm:px-3 sm:py-4 text-md font-bold rounded-lg bg-transparent border border-icon-secondary hover:bg-gray-600 transition-all duration-300 ease-in-out"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+        <!-- Hero Vector -->
+        <div
+          class="flex flex-1 flex-col items-center justify-center"
+        >
+          <img
+            class="max-w-50 md:max-w-90 w-full"
+            src="/images/file_folder.png"
+            alt="Folder Vector"
+          />
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section
+        id="features"
+        class="min-h-[calc(100vh-5rem)] mt-5 py-20 flex flex-col max-w-7xl mx-auto px-4 sm:px-6"
+      >
+        <h2
+          class="text-3xl sm:text-4xl font-bold font-title text-center mb-16 text-headline"
+        >
+          <span class="text-purple-400">Simple</span>. <span class="text-green-600">Secure</span>. <span class="text-blue-400">Integrated</span>.
+        </h2>
+        <!-- Features Grid -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 w-full max-w-6xl"
+        >
+          <article
+            class="bg-white text-black opacity-95 p-6 rounded-xl shadow-xl border-3 border-purple-600 text-center"
+          >
+            <figure
+              class="mb-6 w-full p-4 rounded-lg flex items-center justify-center"
+            >
+              <img
+                src="/images/upload.gif"
+                alt="Upload Animation"
+                class="w-22 h-auto rounded"
+              />
+            </figure>
+
+            <h3 class="text-xl font-bold mb-2 text-purple-600">
+              1. Instant Upload
+            </h3>
+            <p class="text-grau-400 leading-normal text-base max-w-xs mx-auto"></p>
+              Upload files directly into your folder of any type and maximum of
+              20MB
+            </p>
+          </article>
+          <article
+            class="bg-white text-black opacity-95 p-6 rounded-xl shadow-xl border-3 border-green-600 text-center"
+          >
+            <figure
+              class="mb-6 w-full p-4 rounded-lg flex items-center justify-center"
+            >
+              <img
+                src="/images/file-folder.gif"
+                alt="Folder Organization Animation"
+                class="w-22 h-auto rounded"
+              />
+            </figure>
+
+            <h3 class="text-xl font-bold mb-2 text-green-600">
+              2. Organize Folders
+            </h3>
+            <p class="text-grau-400 leading-normal text-base max-w-xs mx-auto"></p>
+              Create, rename, and manage unlimited folders to keep every project perfectly segmented and easily searchable.
+            </p>
+          </article>
+          <article
+            class="bg-white text-black opacity-95 p-6 rounded-xl shadow-xl border-3 border-blue-600 text-center"
+          >
+            <figure
+              class="mb-6 w-full p-4 rounded-lg flex items-center justify-center"
+            >
+              <img
+                src="/images/share.gif"
+                alt="File Sharing Animation"
+                class="w-22 h-auto rounded"
+              />
+            </figure>
+
+            <h3 class="text-xl font-bold mb-2 text-blue-600">
+              3. Secure Sharing
+            </h3>
+            <p class="text-grau-400 leading-normal text-base max-w-xs mx-auto"></p>
+              Generate time-limited, signed URLs for individual files, giving you ultimate control over access duration.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
