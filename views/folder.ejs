@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/images/logo2.png" />
     <script src="/scripts/fileMenu.js" defer></script>
   </head>
-  <body class="min-h-screen bg-bg1 text-headline flex flex-col">
+  <body class="min-h-screen bg-bg1 text-headline flex flex-col pt-20">
     <%- include('partials/navbar') %>
 
     <main class="flex flex-col items-center flex-1 px-4 py-8">
@@ -30,7 +30,7 @@
         <!-- Files Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 w-full max-w-6xl">
           <% files.forEach((file, i) => { %>
-            <div class="relative bg-bg2 border border-gray-600 rounded-xl p-7 flex flex-col items-center shadow-md">
+            <div class="relative bg-bg2 border border-gray-600 rounded-xl px-2 py-5 md:py-6 flex flex-col items-center shadow-md">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-15 h-15 mb-2 fill-btn-primary-bg" viewBox="0 0 50 50">
                 <path d="M7 2v46h36V14.6L30.4 2H7zm2 2h20v12h12v30H9V4zm22 1.4L39.6 14H31V5.4z"/>
               </svg>
